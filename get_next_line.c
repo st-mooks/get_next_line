@@ -15,12 +15,12 @@
 char	*get_next_line(int fd)
 {
 	char			*line;
-	static char		*buf;
+	static char		buf[BUFFER_SIZE];
 	static ssize_t	len;
 	static ssize_t	i = 0;
 
-	if (!read_first_buffer(&buf, &len, fd))
+	if (!read_first_buffer(buf, &len, fd))
 		return (NULL);
-	line = read_next_line(&buf, &len, &i, fd);
+	line = read_next_line(buf, &len, &i, fd);
 	return (line);
 }
