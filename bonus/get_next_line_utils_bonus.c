@@ -55,6 +55,8 @@ char	*add_char(char *line, char c)
 	{
 		line_len = ft_strlen(line);
 		new = malloc(line_len + 2);
+		if (!new)
+			return (NULL);
 		ft_memmove(new, line, line_len);
 		new[line_len] = c;
 		new[line_len + 1] = '\0';
@@ -63,30 +65,41 @@ char	*add_char(char *line, char c)
 	return (new);
 }
 
-char    *read_next_line(char **buf, int fd)
+ssize_t read_next_buffer(int fd, char *buf)
+{
+    ssize_t i;
+    ssize_t len;
+
+    len = read(fd, buf, BUFFER_SIZE);
+    if (len >= 0)
+        buf[len] = '\0';
+    return (len);
+}
+
+char    *read_next_line(char *buf, int fd)
 {
     char    *line;
     ssize_t len;
 
     line = NULL;
-    while (**buf)
+	len = ft_strlen(buf);
+    while (*buf)
     {
-        while (**buf != '\n' && **buf)
+        while (*buf != '\n')
         {
-            line = add_char(line, **buf);
-            *buf += 1;
+            line = add_char(line, *buf);
+            ft_memmove(buf, buf + 1, len);
         }
-        if (!**buf)
+        if (!*buf)
+		{
+			len = read_next_buffer(fd, buf);
+			if (len <= 0)
+				return (line);
+		}
+        if (*buf == '\n')
         {
-            len = read(fd, *buf, BUFFER_SIZE);
-            if (len == 0)
-                return (line);
-            *buf[len] = '\0';
-        }
-        if (**buf == '\n')
-        {
-            line = add_char(line, **buf);
-            *buf += 1;
+            line = add_char(line, *buf);
+            ft_memmove(buf, buf + 1, len);
             return (line);
         }
     }

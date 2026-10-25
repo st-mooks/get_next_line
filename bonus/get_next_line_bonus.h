@@ -18,5 +18,6 @@ char	*get_next_line(int fd);
 size_t	ft_strlen(char *str);
 void	*ft_memmove(void *dest, const void *src, size_t n);
 char	*add_char(char *line, char c);
-char	*read_next_line(char **buf, int fd);
+ssize_t read_next_buffer(int fd, char *buf);
+char	*read_next_line(char *buf, int fd);
 #endif

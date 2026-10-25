@@ -5,16 +5,13 @@ char    *get_next_line(int fd)
     static char buf[BUFFER_SIZE + 1] = "";
     ssize_t     len;
     char        *line;
-    static char *ptr;
 
-    if (!*ptr)
+    if (!buf[0])
     {
-        ptr = buf;
-        len = read(fd, ptr, BUFFER_SIZE);
-        ptr[len] = '\0';
+        len = read_next_buffer(fd, buf);
+        if (len <= 0)
+            return (NULL);
     }
-    if (len <= 0)
-        return (NULL);
-    line = read_next_line(&ptr, fd);
+    line = read_next_line(buf, fd);
     return (line);
 }
