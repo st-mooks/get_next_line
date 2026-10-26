@@ -42,7 +42,7 @@ str = get_next_line(fd);
 
 - [OnlineGDB](https://www.onlinegdb.com/online_c_compiler)
 - [The Open Group](https://pubs.opengroup.org/onlinepubs/007904875/functions/open.html)
-- [GeeksforGeeks](hhttps://www.geeksforgeeks.org/c/static-variables-in-c/)
+- [GeeksforGeeks](https://www.geeksforgeeks.org/c/static-variables-in-c/)
 - [Laboratoire d'informatique de l'École polytechnique](https://www.lix.polytechnique.fr/~liberti/public/computing/prog/c/C/FUNCTIONS/read.html)
 
 #### Use of AI
