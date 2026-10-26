@@ -1,3 +1,10 @@
 a.out
-main.c
 file
+file_no_newline_at_end
+file_10_newlines
+file_10K_long_line
+file1
+file2
+file3
+main.c
+main_bonus.c

@@ -16,9 +16,6 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdint.h>
-//Uncomment for testing
-# include <stdio.h>
-# include <fcntl.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 4
@@ -29,7 +26,6 @@ char	*get_next_line(int fd);
 //get_next_line_utils.c
 size_t	ft_strlen(char *str);
 void	*ft_memmove(void *dest, const void *src, size_t n);
-char	*add_char(char *line, char c);
-int		read_first_buffer(char *buf, ssize_t *len, int fd);
-char	*read_next_line(char *buf, ssize_t *len, ssize_t *i, int fd);
+char	*add_str(char *original, char *str, int str_len);
+void	parse_buffer(char **line, char *buf, int fd);
 #endif
